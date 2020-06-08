@@ -2,9 +2,11 @@ const { createDdbDocClient } = require('../utilities/dynamodbClient')
 
 const dynamodbClient = createDdbDocClient()
 
+const TableName = 'mock-table'
+
 const get = id => dynamodbClient
   .get({
-    TableName: 'mock-table',
+    TableName,
     Key: { id }
   })
   .promise()
@@ -12,3 +14,14 @@ const get = id => dynamodbClient
     if(!Item) console.error('Unable to find item by id')
     return Item
   })
+
+const put = Item => dynamodbClient
+  .put({
+    TableName,
+    Item
+  })
+  .promise()
+
+module.exports = {
+  createMockTableModel: () => ({ get, put })
+}
