@@ -6,10 +6,12 @@ provider:
   region: eu-west-1
   profile: defualt
   stage: ${opt:stage, 'dev'}
-
+  environment:
+    STAGE: ${self:provider.stage}
 plugins:
-  - serverless-offline
+  - serverless-dynamodb-local
   - serverless-domain-manager
+  - serverless-offline
 
 custom:
   customDomain:
@@ -19,6 +21,18 @@ custom:
     certificateName: '*.gql.com' # Replace with certificate
     createRoute53Record: false # Change as needed
     endpointType: 'regional'
+
+  dynamodb:
+    stages:
+      - 'dev'
+    start:
+      port: 8000
+      inMemory: true
+    seed:
+      main:
+        sources:
+          table: mock-table
+          sources: [mockTableData.json]
 
   serverless-offline:
     httpPort: 4000
@@ -34,3 +48,20 @@ functions:
           path: graphql
           method: post
           cors: true
+
+resources: # CloudFormation template syntax
+  Resources:
+    mockTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: mock-table
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
