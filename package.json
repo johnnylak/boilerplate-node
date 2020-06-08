@@ -1,7 +1,7 @@
 {
   "name": "boilerplate",
   "version": "1.0.0",
-  "main": "handler.js",
+  "main": "lambda.js",
   "license": "MIT",
   "scripts": {
     "dev": "sls offline -s ${stageName:-'dev'}",
