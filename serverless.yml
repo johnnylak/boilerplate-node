@@ -1,0 +1,37 @@
+service: boilerplate
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-west-1
+  profile: defualt
+  stage: ${opt:stage, 'dev'}
+
+plugins:
+  - serverless-offline
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: serverless.gql.com # Replace with domain name
+    stage: ${self:provider.stage}
+    basepath: gql # Add neccessary path to api
+    certificateName: '*.gql.com' # Replace with certificate
+    createRoute53Record: false # Change as needed
+    endpointType: 'regional'
+
+  serverless-offline:
+    httpPort: 4000
+
+functions:
+  handler:
+    handler: lambda.handler
+    memorySize: 1536
+    timeout: 30
+    description: 'Serverless gql boilerplate'
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+          private: true

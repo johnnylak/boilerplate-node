@@ -1,0 +1,14 @@
+{
+  "name": "bonehog",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "sls offline -s ${stageName:-'dev'}"
+  },
+  "devDependencies": {
+    "serverless": "^1.72.0",
+    "serverless-domain-manager": "^4.1.1",
+    "serverless-offline": "^6.4.0"
+  }
+}
