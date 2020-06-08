@@ -1,14 +1,19 @@
 {
-  "name": "bonehog",
+  "name": "boilerplate",
   "version": "1.0.0",
-  "main": "handler.js",
+  "main": "lambda.js",
   "license": "MIT",
   "scripts": {
-    "dev": "sls offline -s ${stageName:-'dev'}"
+    "dev": "sls offline -s ${stageName:-'dev'}",
+    "ddb": "sls dynamodb start --migrate --seed=main"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.691.0"
   },
   "devDependencies": {
     "serverless": "^1.72.0",
     "serverless-domain-manager": "^4.1.1",
+    "serverless-dynamodb-local": "^0.2.10",
     "serverless-offline": "^6.4.0"
   }
 }
