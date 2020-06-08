@@ -12,5 +12,8 @@
     "serverless-domain-manager": "^4.1.1",
     "serverless-dynamodb-local": "^0.2.10",
     "serverless-offline": "^6.4.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.691.0"
   }
 }
