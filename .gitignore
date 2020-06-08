@@ -1,0 +1,6 @@
+# Dependencies
+node_modules/
+
+# Logs
+.DS_Store
+yarn-error.log*
