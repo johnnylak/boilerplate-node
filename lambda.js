@@ -1,12 +1,25 @@
+const { ApolloServer } = require('apollo-server-lambda')
 
-const handler = async ( event, context ) => {
+const {makeSchema} = require('./graphql/makeSchema')
 
-  return {
-    statusCode: 200, 
-    body: 'ok'
-  }
-}
+const schema = makeSchema()
+
+const server = new ApolloServer({
+  schema,
+  context: ({ event, context }) => ({
+    headers: event.headers,
+    functionName: context.functionName,
+    event,
+    context
+  })
+})
+
+const handler = server.createHandler({
+    cors: { origin: '*' }
+})
 
 module.exports = {
+  server,
   handler
 }
+

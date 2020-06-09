@@ -7,3 +7,6 @@ yarn-error.log*
 
 # ddb
 .dynamodb/
+
+# node package manager
+.tool-versions
