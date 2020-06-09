@@ -9,4 +9,4 @@ yarn-error.log*
 .dynamodb/
 
 # node package manager
-.tools-version
+.tool-versions
