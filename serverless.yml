@@ -3,7 +3,7 @@ service: boilerplate
 provider:
   name: aws
   runtime: nodejs10.x
-  region: eu-west-1
+  region: us-east-1
   profile: defualt
   stage: ${opt:stage, 'dev'}
   environment:

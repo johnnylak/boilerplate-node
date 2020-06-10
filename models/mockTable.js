@@ -4,7 +4,7 @@ const dynamodbClient = createDdbDocClient()
 
 const TableName = 'mock-table'
 
-const get = id => dynamodbClient
+const get = ({ id }) => dynamodbClient
   .get({
     TableName,
     Key: { id }

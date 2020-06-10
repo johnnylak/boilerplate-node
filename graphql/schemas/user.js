@@ -1,6 +1,18 @@
-const { queryField } = require('@nexus/schema');
+const { queryField, idArg } = require('@nexus/schema')
+
+const { createMockTableModel } = require('../../models')
+
+const mockTableModel = createMockTableModel()
 
 const getUser = queryField('getUser', {
+  type: 'User',
+  args: {
+    id: idArg({ required: true })
+  },
+  resolve: (_, { id }) => mockTableModel.get({ id })
+})
+
+const getUsers = queryField('getUsers', {
   type: 'User',
   list: true,
   resolve: (_, __, context) => {
@@ -14,4 +26,5 @@ const getUser = queryField('getUser', {
 
 module.exports = {
   getUser,
+  getUsers
 };

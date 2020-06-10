@@ -4,8 +4,8 @@ const User = objectType({
   name: 'User',
 
   definition (t) {
-    t.string('firstName')
-    t.string('lastName')
+    t.id('id')
+    t.string('name', { nullable: true })
   }
 })
 
