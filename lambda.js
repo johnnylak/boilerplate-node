@@ -1,8 +1,6 @@
 const { ApolloServer } = require('apollo-server-lambda')
 
-const {makeSchema} = require('./graphql/makeSchema')
-
-const schema = makeSchema()
+const { schema } = require('./graphql/makeSchema')
 
 const server = new ApolloServer({
   schema,

@@ -1,17 +1,15 @@
-const { queryField } = require('@nexus/schema');
+const { queryField, list } = require("nexus");
 
-const getUser = queryField('getUser', {
-  type: 'User',
-  list: true,
+const getUser = queryField("getUser", {
+  type: list("User"),
   resolve: (_, __, context) => {
     return [
-      { firstName: 'Test', lastName: 'Test' },
-      { firstName: 'Test', lastName: 'Test' },
-      { firstName: 'Test', lastName: 'Test' },
+      { firstName: "Test", lastName: "Test" },
+      { firstName: "Test", lastName: "Test" }
     ];
   },
 });
 
 module.exports = {
-  getUser,
+  getUser
 };

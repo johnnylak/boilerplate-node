@@ -3,11 +3,11 @@
 
 
 type Query {
-  getUser: [User!]!
-  healthCheck: String!
+  getUser: [User]
+  healthCheck: String
 }
 
 type User {
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
 }

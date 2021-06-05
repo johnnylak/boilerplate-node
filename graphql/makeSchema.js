@@ -1,4 +1,4 @@
-const { queryType, makeSchema: _makeSchema } = require('@nexus/schema')
+const { queryType, makeSchema: _makeSchema } = require('nexus')
 
 const allSchemas = require('./schemas/user')
 const allTypes = require('./types')
@@ -15,7 +15,7 @@ const Query = queryType({
   },
 })
 
-const makeSchema = () => _makeSchema({
+const schema = _makeSchema({
   types: [Query, allTypes, allSchemas],
   outputs: {
     schema: __dirname + "/generated/schema.graphql",
@@ -24,5 +24,5 @@ const makeSchema = () => _makeSchema({
 })
 
 module.exports = {
-  makeSchema
+  schema
 }
